@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Homepage</title>
 </head>
 <body>
+<h1>Welcome to homepage of WebMVC Spring test Application</h1>
 
 </body>
 </html>
