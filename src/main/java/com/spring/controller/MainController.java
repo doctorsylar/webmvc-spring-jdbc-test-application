@@ -12,4 +12,9 @@ public class MainController {
     public String homepage () {
         return "index";
     }
+
+    @GetMapping ("/test")
+    public String testLink () {
+        return "test";
+    }
 }
