@@ -3,9 +3,11 @@ package com.spring.services;
 import com.spring.dao.UserDao;
 import com.spring.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
@@ -33,5 +35,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         return userDao.getAll();
+    }
+
+    @Override
+    public boolean isExisting(String username) {
+        return false;
     }
 }

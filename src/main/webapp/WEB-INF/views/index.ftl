@@ -6,8 +6,14 @@
 </head>
 <body>
 <h1>Welcome to homepage of WebMVC Spring test Application</h1>
-<a href="/test">Test link</a>
-<a href="/login">Test link</a>
-
+<div>
+    <a href="/test">Test link</a>
+</div>
+<div>
+    <a href="/login">Login</a>
+</div>
+<div>
+    <a href="/list">List</a>
+</div>
 </body>
 </html>
