@@ -10,11 +10,13 @@
 <div>
     <div>
         <form method="post" action="/search" name="user">
-            <label>
-                Input name for search:
-            </label>
-            <input type="text" placeholder="Username" name="name">
-            <input type="submit" value="Search">
+            <div>
+                <label>
+                    Input name for search:
+                </label>
+                <input type="text" placeholder="Username" name="name">
+                <input type="submit" value="Search">
+            </div>
         </form>
     </div>
 </div>

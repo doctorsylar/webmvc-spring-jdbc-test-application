@@ -40,15 +40,22 @@ public class MainController {
     }
 
     @GetMapping ("/search")
-    public String searchPage () {
+    public String searchPage (Model model) {
 //        return new ModelAndView("search", "user", new User());
+        model.addAttribute("error", "");
         return "search";
     }
 
     @PostMapping ("/search")
     public String userSearch (@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("user", userService.get(user.getName()));
-        return "search-result";
+        if (userService.isExisting(user.getName())) {
+            model.addAttribute("user", userService.get(user.getName()));
+            return "search-result";
+        }
+        else {
+            model.addAttribute("error", "User not found, try again");
+            return "redirect:/search";
+        }
     }
 
     @GetMapping ("/search-result")

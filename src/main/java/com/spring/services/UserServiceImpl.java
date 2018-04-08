@@ -44,6 +44,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isExisting(String username) {
+        List<User> users = userDao.getAll();
+        for (User user : users) {
+            if (user.getName().equals(username)) {
+                return true;
+            }
+        }
         return false;
     }
 }
