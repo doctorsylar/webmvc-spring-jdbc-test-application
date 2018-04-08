@@ -17,4 +17,9 @@ public class MainController {
     public String testLink () {
         return "test";
     }
+
+    @GetMapping ("/login")
+    public String login () {
+        return "login";
+    }
 }

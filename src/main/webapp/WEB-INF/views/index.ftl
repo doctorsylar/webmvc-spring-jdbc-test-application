@@ -7,5 +7,7 @@
 <body>
 <h1>Welcome to homepage of WebMVC Spring test Application</h1>
 <a href="/test">Test link</a>
+<a href="/login">Test link</a>
+
 </body>
 </html>
