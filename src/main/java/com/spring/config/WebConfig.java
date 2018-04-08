@@ -27,4 +27,5 @@ public class WebConfig {
         freeMarkerConfigurer.setTemplateLoaderPaths("/", "/WEB-INF/views/");
         return freeMarkerConfigurer;
     }
+    //meh
 }
