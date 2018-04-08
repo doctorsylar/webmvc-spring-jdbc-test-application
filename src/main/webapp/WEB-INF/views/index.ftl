@@ -15,5 +15,8 @@
 <div>
     <a href="/list">List</a>
 </div>
+<div>
+    <a href="/search">Search</a>
+</div>
 </body>
 </html>

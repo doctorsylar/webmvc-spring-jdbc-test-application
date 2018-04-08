@@ -13,6 +13,8 @@ public interface UserService {
 
     User get (int id);
 
+    User get (String name);
+
     List<User> getAll ();
 
     boolean isExisting (String username);

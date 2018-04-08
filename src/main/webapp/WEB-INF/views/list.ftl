@@ -8,11 +8,19 @@
 <h1>
     List of users
 </h1>
-
-<div>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Password</th>
+    </tr>
     <#list users as user>
-
+    <tr>
+        <td>${user.id}</td>
+        <td>${user.name}</td>
+        <td>${user.password}</td>
+    </tr>
     </#list>
-</div>
+</table>
 </body>
 </html>

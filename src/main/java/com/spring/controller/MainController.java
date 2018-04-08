@@ -39,14 +39,20 @@ public class MainController {
         return "list";
     }
 
-
-//    @GetMapping ("/search")
-//    public ModelAndView search () {
+    @GetMapping ("/search")
+    public String searchPage () {
 //        return new ModelAndView("search", "user", new User());
-//    }
-//
-//    @PostMapping ("/find-record")
-//    public String findRecord (Model model) {
-//        return "search-result";
-//    }
+        return "search";
+    }
+
+    @PostMapping ("/search")
+    public String userSearch (@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("user", userService.get(user.getName()));
+        return "search-result";
+    }
+
+    @GetMapping ("/search-result")
+    public String searchResult () {
+        return "search-result";
+    }
 }

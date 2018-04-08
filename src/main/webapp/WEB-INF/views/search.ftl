@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,11 +9,11 @@
 <h1>Search page</h1>
 <div>
     <div>
-        <form method="post" action="/find-record" >
+        <form method="post" action="/search" name="user">
             <label>
                 Input name for search:
             </label>
-            <input type="text" placeholder="Username">
+            <input type="text" placeholder="Username" name="name">
             <input type="submit" value="Search">
         </form>
     </div>
