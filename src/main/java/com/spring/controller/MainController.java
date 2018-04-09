@@ -5,10 +5,7 @@ import com.spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -40,10 +37,8 @@ public class MainController {
     }
 
     @GetMapping ("/search")
-    public String searchPage (Model model) {
-//        return new ModelAndView("search", "user", new User());
-        model.addAttribute("error", "");
-        return "search";
+    public ModelAndView searchPage () {
+        return new ModelAndView("search", "user", new User());
     }
 
     @PostMapping ("/search")
@@ -53,7 +48,7 @@ public class MainController {
             return "search-result";
         }
         else {
-            model.addAttribute("error", "User not found, try again");
+//            model.addAttribute("error", "User not found, try again");
             return "redirect:/search";
         }
     }
@@ -61,5 +56,38 @@ public class MainController {
     @GetMapping ("/search-result")
     public String searchResult () {
         return "search-result";
+    }
+
+    @GetMapping ("/delete/{id}")
+    public ModelAndView deleteRecord (@PathVariable("id") int id) {
+        userService.delete(id);
+        return new ModelAndView("list", "users", userService.getAll());
+    }
+
+    @GetMapping ("/update/{id}")
+    public ModelAndView updateRecord (@PathVariable("id") int id) {
+        return new ModelAndView("update", "user", userService.get(id));
+    }
+
+    @PostMapping ("/updateUser")
+    public String updateSubmit (@ModelAttribute("user") User user) {
+        userService.update(user);
+        return "redirect:/list";
+    }
+
+    @GetMapping ("/user/{id}")
+    public ModelAndView userFromList (@PathVariable("id") int id) {
+        return new ModelAndView("search-result", "user", userService.get(id));
+    }
+
+    @GetMapping ("/create")
+    public String createUserPage () {
+        return "create";
+    }
+
+    @PostMapping ("/createUser")
+    public String addUser (@ModelAttribute("user") User user) {
+        userService.insert(user);
+        return "redirect:/list";
     }
 }

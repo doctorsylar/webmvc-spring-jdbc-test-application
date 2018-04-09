@@ -16,11 +16,18 @@
     </tr>
     <#list users as user>
     <tr>
-        <td>${user.id}</td>
-        <td>${user.name}</td>
-        <td>${user.password}</td>
+        <td><a href="/user/${user.id}">${user.id}</a></td>
+        <td><a href="/user/${user.id}">${user.name}</a></td>
+        <td><a href="/user/${user.id}">${user.password}</a></td>
+        <td><a href="/update/${user.id}">Edit</a></td>
+        <td><a href="/delete/${user.id}">Delete</a></td>
     </tr>
     </#list>
+    <tr>
+        <td>
+            <a href="/create"><label>Create new user</label></a>
+        </td>
+    </tr>
 </table>
 </body>
 </html>
