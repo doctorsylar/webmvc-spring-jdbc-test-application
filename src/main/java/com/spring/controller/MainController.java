@@ -48,7 +48,6 @@ public class MainController {
             return "search-result";
         }
         else {
-//            model.addAttribute("error", "User not found, try again");
             return "redirect:/search";
         }
     }
