@@ -25,11 +25,6 @@ public class MainController {
         return "test";
     }
 
-    @GetMapping ("/login")
-    public String login () {
-        return "login";
-    }
-
     @GetMapping ("/list")
     public String usersList (Model model) {
         model.addAttribute("users", userService.getAll());
@@ -48,7 +43,6 @@ public class MainController {
             return "search-result";
         }
         else {
-//            model.addAttribute("error", "User not found, try again");
             return "redirect:/search";
         }
     }
@@ -89,5 +83,39 @@ public class MainController {
     public String addUser (@ModelAttribute("user") User user) {
         userService.insert(user);
         return "redirect:/list";
+    }
+
+    @GetMapping ("/login")
+    public String loginPage () {
+        return "login";
+    }
+
+    @PostMapping ("/login")
+    public String loginHandler (@ModelAttribute("user") User user) {
+        if (!userService.isExisting(user.getName())) {
+            return "failure";
+        }
+        else {
+            if (user.getPassword().equals(userService.get(user.getName()).getPassword())) {
+                return "success";
+            }
+        }
+        return "failure";
+    }
+
+    @GetMapping ("/registration")
+    public String registrationPage () {
+        return "registration";
+    }
+
+    @PostMapping ("/registration")
+    public String registrationHandler (@ModelAttribute("user") User user) {
+        if (userService.isExisting(user.getName())) {
+            return "failure";
+        }
+        else {
+            userService.insert(user);
+            return "success";
+        }
     }
 }
