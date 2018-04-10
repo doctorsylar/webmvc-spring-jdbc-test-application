@@ -2,6 +2,7 @@ package com.spring.dao;
 
 import com.spring.entity.mages.AbstractMageImpl;
 import com.spring.entity.mages.Mage;
+import com.spring.mapper.CharacterMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -39,16 +40,19 @@ public class CharacterDaoMysqlImpl implements CharacterDao {
 
     @Override
     public void delete(int id) {
-
+        String sql = "delete from characters where id=?";
+        jdbcTemplate.update(sql, id);
     }
 
     @Override
     public AbstractMageImpl get(int id) {
-        return null;
+        String sql = "select * from characters where id=?";
+        return (AbstractMageImpl) jdbcTemplate.queryForObject(sql, new CharacterMapper(), id);
     }
 
     @Override
     public List<AbstractMageImpl> getAll() {
-        return null;
+        String sql = "select * from characters";
+        return jdbcTemplate.query(sql, new CharacterMapper());
     }
 }
