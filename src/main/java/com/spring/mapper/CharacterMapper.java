@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CharacterMapper implements RowMapper {
+public class CharacterMapper implements RowMapper<AbstractMageImpl> {
     @Override
     public AbstractMageImpl mapRow(ResultSet resultSet, int i) throws SQLException {
         AbstractMageImpl mage;
