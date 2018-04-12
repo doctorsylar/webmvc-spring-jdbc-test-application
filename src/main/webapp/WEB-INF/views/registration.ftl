@@ -1,9 +1,11 @@
+<#{.data_model.JspTaglibs.['http://www.springframework.org/tags/form']}
 <!DOCTYPE html>
 <html lang="en">
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
+    <link rel="stylesheet" href="../../resources/css/main.css" type="text/css">
 </head>
 <body>
 <div id="userInfoForm">

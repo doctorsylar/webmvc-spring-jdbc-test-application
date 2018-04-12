@@ -7,8 +7,11 @@ import com.spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping ("/")
@@ -99,16 +102,26 @@ public class MainController {
     }
 
     @PostMapping ("/login")
-    public String loginHandler (@ModelAttribute("user") User user) {
-        if (!userService.isExisting(user.getName())) {
+    public String loginHandler (@Valid @ModelAttribute("user") User user,
+                                BindingResult bindingResult, Model model) {
+        if (!bindingResult.hasErrors()) {
+            if (!userService.isExisting(user.getName())) {
+                return "failure";
+            }
+            else {
+                if (user.getPassword().equals(userService.get(user.getName()).getPassword())) {
+                    return "redirect:/user/" + userService.get(user.getName()).getId();
+                }
+            }
             return "failure";
         }
         else {
-            if (user.getPassword().equals(userService.get(user.getName()).getPassword())) {
-                return "redirect:/user/" + userService.get(user.getName()).getId();
-            }
+            model.addAttribute("user", user);
+            return "login";
         }
-        return "failure";
+
+
+
     }
 
     @GetMapping ("/registration")
@@ -117,14 +130,22 @@ public class MainController {
     }
 
     @PostMapping ("/registration")
-    public String registrationHandler (@ModelAttribute("user") User user) {
-        if (userService.isExisting(user.getName())) {
-            return "failure";
+    public String registrationHandler (@Valid @ModelAttribute("user") User user,
+                                       BindingResult bindingResult, Model model) {
+        if (!bindingResult.hasErrors()) {
+            if (userService.isExisting(user.getName())) {
+                return "failure";
+            }
+            else {
+                userService.insert(user);
+                return "success";
+            }
         }
         else {
-            userService.insert(user);
-            return "success";
+            model.addAttribute("user", user);
+            return "/registration";
         }
+
     }
 
     @GetMapping ("/user/{id}/character-creation")

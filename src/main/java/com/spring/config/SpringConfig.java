@@ -9,7 +9,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan (value = {"com.spring.services", "com.spring.dao"})
+@ComponentScan (value = {"com.spring.services", "com.spring.dao", "com.spring.states"})
 public class SpringConfig {
 
     @Bean

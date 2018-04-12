@@ -1,8 +1,12 @@
 package com.spring.entity;
 
+import javax.validation.constraints.Size;
+
 public class User {
     private int id;
+    @Size (min = 5, max = 15, message = "Username must contain from 5 to 15 symbols")
     private String name;
+    @Size (min = 5, max = 15, message = "Password must contain from 5 to 15 symbols")
     private String password;
 
     public User() {
