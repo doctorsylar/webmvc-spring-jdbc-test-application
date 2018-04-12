@@ -48,11 +48,14 @@
         <td>${character.attackLevel}</td>
         <td>${character.defenceLevel}</td>
         <td>${character.buffLevel}</td>
+        <td><a href="/user/${user.id}/update/${character.id}">Edit(nope)</a></td>
+        <td><a href="/user/${user.id}/delete/${character.id}">Delete</a></td>
     </tr>
     </#list>
         </table>
         <div>
             <a href="/user/${user.id}/character-creation"><label>Create new character</label></a>
+            <a href="/list"><label>Return to users list</label></a>
         </div>
     </div>
 

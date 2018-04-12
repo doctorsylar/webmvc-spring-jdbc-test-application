@@ -138,4 +138,11 @@ public class MainController {
         characterService.insert(mage, id);
         return "redirect:/user/" + id;
     }
+
+    @GetMapping ("/user/{user-id}/delete/{character-id}")
+    public String deleteCharacter (@PathVariable("user-id") int userId,
+                                   @PathVariable("character-id") int characterId) {
+        characterService.delete(characterId);
+        return "redirect:/user/" + userId;
+    }
 }
