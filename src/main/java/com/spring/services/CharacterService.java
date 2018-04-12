@@ -1,5 +1,6 @@
 package com.spring.services;
 
+import com.spring.entity.User;
 import com.spring.entity.mages.AbstractMageImpl;
 
 import java.util.List;
@@ -16,5 +17,5 @@ public interface CharacterService {
 
     List<AbstractMageImpl> getAll ();
 
-
+    List<AbstractMageImpl> getAllForUser (User user);
 }

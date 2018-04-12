@@ -1,5 +1,6 @@
 package com.spring.dao;
 
+import com.spring.entity.User;
 import com.spring.entity.mages.AbstractMageImpl;
 
 import java.util.List;
@@ -14,4 +15,7 @@ public interface CharacterDao {
     AbstractMageImpl get (int id);
 
     List<AbstractMageImpl> getAll ();
+
+    List<AbstractMageImpl> getAllForUser (User user);
+
 }

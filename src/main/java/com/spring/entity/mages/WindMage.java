@@ -2,6 +2,7 @@ package com.spring.entity.mages;
 
 public class WindMage extends AbstractMageImpl {
     public WindMage() {
+        super();
     }
 
     public WindMage(String name, int speed, int attackLevel, int defenceLevel, int buffLevel) {

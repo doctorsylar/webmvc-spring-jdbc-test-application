@@ -1,6 +1,9 @@
 package com.spring.controller;
 
 import com.spring.entity.User;
+import com.spring.entity.mages.AbstractMageImpl;
+import com.spring.entity.mages.Mage;
+import com.spring.services.CharacterService;
 import com.spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,9 @@ public class MainController {
     @Autowired
     public UserService userService;
 
+    @Autowired
+    public CharacterService characterService;
+
     @GetMapping ("/")
     public String homepage () {
         return "index";
@@ -26,9 +32,10 @@ public class MainController {
     }
 
     @GetMapping ("/list")
-    public String usersList (Model model) {
-        model.addAttribute("users", userService.getAll());
-        return "list";
+    public ModelAndView usersList () {
+//        model.addAttribute("users", userService.getAll());
+//        return "list";
+        return new ModelAndView("list", "users", userService.getAll());
     }
 
     @GetMapping ("/search")
@@ -71,7 +78,13 @@ public class MainController {
 
     @GetMapping ("/user/{id}")
     public ModelAndView userFromList (@PathVariable("id") int id) {
-        return new ModelAndView("search-result", "user", userService.get(id));
+        ModelAndView page = new ModelAndView("search-result", "user", userService.get(id));
+        page.addObject("characters", characterService.getAllForUser(userService.get(id)));
+        return page;
+
+
+//        return new ModelAndView("search-result", "user", userService.get(id));
+//        return new ModelAndView("search-result", "user", userService.get(id));
     }
 
     @GetMapping ("/create")
@@ -97,7 +110,7 @@ public class MainController {
         }
         else {
             if (user.getPassword().equals(userService.get(user.getName()).getPassword())) {
-                return "success";
+                return "redirect:/user/" + userService.get(user.getName()).getId();
             }
         }
         return "failure";
@@ -117,5 +130,20 @@ public class MainController {
             userService.insert(user);
             return "success";
         }
+    }
+
+    @GetMapping ("/user/{id}/character-creation")
+    public ModelAndView characterCreationPage (@PathVariable("id") int id) {
+        return new ModelAndView("character-creation", "id", id);
+//        return "character-creation";
+    }
+
+    @PostMapping ("/user/{id}/character-creation")
+    public String characterCreationSubmit (@PathVariable("id") @ModelAttribute("character") int id, AbstractMageImpl mage) {
+//        switch (mage.getClassName()) {
+//
+//        }
+        characterService.insert(mage, id);
+        return "redirect:/user/" + id;
     }
 }

@@ -3,6 +3,7 @@ package com.spring.entity.mages;
 public class FireMage extends AbstractMageImpl {
 
     public FireMage() {
+        super();
     }
 
     public FireMage(String name, int speed, int attackLevel, int defenceLevel, int buffLevel) {

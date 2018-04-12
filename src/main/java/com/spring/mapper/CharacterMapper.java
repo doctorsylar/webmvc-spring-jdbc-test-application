@@ -36,6 +36,7 @@ public class CharacterMapper implements RowMapper<AbstractMageImpl> {
                 resultSet.getString("inventory_slot1"),
                 resultSet.getString("inventory_slot2")
         );
+        mage.setClassName(mage.getClass().getSimpleName());
         mage.setId(resultSet.getInt("id"));
         return mage;
     }

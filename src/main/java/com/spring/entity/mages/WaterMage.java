@@ -2,6 +2,7 @@ package com.spring.entity.mages;
 
 public class WaterMage extends AbstractMageImpl {
     public WaterMage() {
+        super();
     }
 
     public WaterMage(String name, int speed, int attackLevel, int defenceLevel, int buffLevel) {

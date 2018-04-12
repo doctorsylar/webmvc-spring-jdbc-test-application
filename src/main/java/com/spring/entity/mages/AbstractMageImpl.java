@@ -3,7 +3,7 @@ package com.spring.entity.mages;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractMageImpl implements Mage {
+public class AbstractMageImpl implements Mage {
     private int id;
     private String name;
     private int healthMax;
@@ -25,24 +25,26 @@ public abstract class AbstractMageImpl implements Mage {
 
     private Map<String, String> inventory;
 
+    private String className;
+
     public AbstractMageImpl() {
         this.name = "";
-        this.healthMax = 10;
         this.healthCurrent = this.healthMax;
         this.healthModifier = 0;
-        this.speed = 3;
+        this.speed = 0;
         this.speedModifier = 0;
-        this.attackLevel = 1;
+        this.attackLevel = 0;
         this.damageModifier = 0;
         this.defenceLevel = 0;
         this.baseDefenceModifier = 0;
         this.buffLevel = 0;
-        this.level = 1;
         this.inventory = new HashMap<>();
         this.inventory.put("Stuff", "");
         this.inventory.put("Robe", "");
         this.inventory.put("ActiveItem1", "");
         this.inventory.put("ActiveItem2", "");
+        this.className = this.getClass().getSimpleName();
+        this.setLevel();
     }
 
     public AbstractMageImpl(String name, int speed, int attackLevel,
@@ -54,26 +56,6 @@ public abstract class AbstractMageImpl implements Mage {
         this.buffLevel = buffLevel;
 
 
-        // Level
-        speed -= 3;
-        for (int i = 1; i <= 3; i++) {
-            attackLevel--;
-            defenceLevel--;
-            buffLevel--;
-            speed--;
-            if (attackLevel >= 0) {
-                this.level += i;
-            }
-            if (defenceLevel >= 0) {
-                this.level += i;
-            }
-            if (buffLevel >= 0) {
-                this.level += i;
-            }
-            if (speed >= 0) {
-                this.level += i;
-            }
-        }
 
         // Health points
         this.healthMax = 10;
@@ -91,7 +73,11 @@ public abstract class AbstractMageImpl implements Mage {
         this.inventory.put("Robe", "");
         this.inventory.put("ActiveItem1", "");
         this.inventory.put("ActiveItem2", "");
+
+        this.setLevel();
     }
+
+
 
     public void fillInventory (String stuff, String robe,
                                String item1, String item2) {
@@ -177,6 +163,17 @@ public abstract class AbstractMageImpl implements Mage {
         this.name = name;
     }
 
+    public void setHealth () {
+        this.healthMax = 10;
+        if (this.attackLevel == 2) {
+            this.healthMax = 15;
+        }
+        else if (this.attackLevel == 3) {
+            this.healthMax = 20;
+        }
+        this.healthCurrent = this.healthMax;
+    }
+
     public void setHealthMax(int healthMax) {
         this.healthMax = healthMax;
     }
@@ -229,13 +226,65 @@ public abstract class AbstractMageImpl implements Mage {
         this.buffActivated = buffActivated;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setLevel() {
+        for (int i = 1,
+             s = this.speed - 3,
+             a = this.attackLevel,
+             d = this.defenceLevel,
+             b = this.buffLevel;
+             i <= 3; i++) {
+            a--;
+            d--;
+            b--;
+            s--;
+            if (a >= 0) {
+                this.level += i;
+            }
+            if (d >= 0) {
+                this.level += i;
+            }
+            if (b >= 0) {
+                this.level += i;
+            }
+            if (s >= 0) {
+                this.level += i;
+            }
+        }
     }
 
     public void setInventory(Map<String, String> inventory) {
         this.inventory = inventory;
     }
 
+    public String getClassName() {
+        return className;
+    }
 
+    public void setClassName(String className) {
+        this.className = className;
+    }
+    @Override
+    public void attack(Mage enemy) {
+
+    }
+
+    @Override
+    public void castBaseDefence() {
+
+    }
+
+    @Override
+    public void castEnergyDefence() {
+
+    }
+
+    @Override
+    public void castBuff() {
+
+    }
+
+    @Override
+    public void castElemental() {
+
+    }
 }

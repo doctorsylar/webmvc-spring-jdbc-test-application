@@ -2,6 +2,7 @@ package com.spring.entity.mages;
 
 public class EarthMage extends AbstractMageImpl {
     public EarthMage() {
+        super();
     }
 
     public EarthMage(String name, int speed, int attackLevel, int defenceLevel, int buffLevel) {
