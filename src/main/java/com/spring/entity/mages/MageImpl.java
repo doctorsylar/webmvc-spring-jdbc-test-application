@@ -3,7 +3,7 @@ package com.spring.entity.mages;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AbstractMageImpl implements Mage {
+public class MageImpl implements Mage {
     private int id;
     private String name;
     private int healthMax;
@@ -27,7 +27,7 @@ public class AbstractMageImpl implements Mage {
 
     private String className;
 
-    public AbstractMageImpl() {
+    public MageImpl() {
         this.name = "";
         this.healthCurrent = this.healthMax;
         this.healthModifier = 0;
@@ -47,8 +47,8 @@ public class AbstractMageImpl implements Mage {
         this.setLevel();
     }
 
-    public AbstractMageImpl(String name, int speed, int attackLevel,
-                            int defenceLevel, int buffLevel) {
+    public MageImpl(String name, int speed, int attackLevel,
+                    int defenceLevel, int buffLevel) {
         this.name = name;
         this.speed = speed;
         this.attackLevel = attackLevel;

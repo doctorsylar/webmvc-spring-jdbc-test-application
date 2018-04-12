@@ -1,6 +1,6 @@
 package com.spring.entity.mages;
 
-public class FireMage extends AbstractMageImpl {
+public class FireMage extends MageImpl {
 
     public FireMage() {
         super();

@@ -1,6 +1,6 @@
 package com.spring.entity.mages;
 
-public class WindMage extends AbstractMageImpl {
+public class WindMage extends MageImpl {
     public WindMage() {
         super();
     }

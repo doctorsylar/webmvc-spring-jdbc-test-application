@@ -1,6 +1,6 @@
 package com.spring.entity.mages;
 
-public class WaterMage extends AbstractMageImpl {
+public class WaterMage extends MageImpl {
     public WaterMage() {
         super();
     }

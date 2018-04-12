@@ -6,10 +6,10 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CharacterMapper implements RowMapper<AbstractMageImpl> {
+public class CharacterMapper implements RowMapper<MageImpl> {
     @Override
-    public AbstractMageImpl mapRow(ResultSet resultSet, int i) throws SQLException {
-        AbstractMageImpl mage;
+    public MageImpl mapRow(ResultSet resultSet, int i) throws SQLException {
+        MageImpl mage;
         switch (resultSet.getString("class")) {
             case "FireMage" : mage = new FireMage(resultSet.getString("name"),
                     resultSet.getInt("speed"), resultSet.getInt("attack"),

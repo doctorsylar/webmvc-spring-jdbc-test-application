@@ -1,8 +1,7 @@
 package com.spring.controller;
 
 import com.spring.entity.User;
-import com.spring.entity.mages.AbstractMageImpl;
-import com.spring.entity.mages.Mage;
+import com.spring.entity.mages.MageImpl;
 import com.spring.services.CharacterService;
 import com.spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,10 +80,6 @@ public class MainController {
         ModelAndView page = new ModelAndView("search-result", "user", userService.get(id));
         page.addObject("characters", characterService.getAllForUser(userService.get(id)));
         return page;
-
-
-//        return new ModelAndView("search-result", "user", userService.get(id));
-//        return new ModelAndView("search-result", "user", userService.get(id));
     }
 
     @GetMapping ("/create")
@@ -139,10 +134,7 @@ public class MainController {
     }
 
     @PostMapping ("/user/{id}/character-creation")
-    public String characterCreationSubmit (@PathVariable("id") @ModelAttribute("character") int id, AbstractMageImpl mage) {
-//        switch (mage.getClassName()) {
-//
-//        }
+    public String characterCreationSubmit (@PathVariable("id") @ModelAttribute("character") int id, MageImpl mage) {
         characterService.insert(mage, id);
         return "redirect:/user/" + id;
     }

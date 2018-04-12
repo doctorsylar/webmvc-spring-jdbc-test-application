@@ -1,6 +1,6 @@
 package com.spring.entity.mages;
 
-public class EarthMage extends AbstractMageImpl {
+public class EarthMage extends MageImpl {
     public EarthMage() {
         super();
     }
