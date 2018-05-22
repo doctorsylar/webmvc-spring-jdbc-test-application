@@ -166,4 +166,9 @@ public class MainController {
         characterService.delete(characterId);
         return "redirect:/user/" + userId;
     }
+
+    @GetMapping ("/battle")
+    public String battle () {
+        return "battle";
+    }
 }
